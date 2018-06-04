@@ -100,7 +100,7 @@ function render(item) {
   let $cardText = document.createElement('p')
   let $cardBtn = document.createElement('a')
 
-  $card.classList.add('card', 'col-lg-3', 'col-md-4', 'col-sm-6', 'col-xs-12')
+  $card.classList.add('card', 'col-xl-3', 'col-lg-4', 'col-sm-6', 'col-12')
   $cardImg.classList.add('card-img-top')
   $cardImg.setAttribute('src', item.imageUrl)
   $cardImg.setAttribute('alt', 'Card image cap')
@@ -130,7 +130,7 @@ function renderCatalog(catalog) {
 
   $headCont.textContent = 'Sal\'s Generic Online Music Retailer'
   $headCont.classList.add('col', 'd-flex', 'justify-content-center')
-  $container.classList.add('container')
+  $container.classList.add('container-fluid')
   $headRow.classList.add('row')
   $itemRow.classList.add('row')
 
@@ -143,3 +143,10 @@ function renderCatalog(catalog) {
   }
   return $container
 }
+
+function renderAll() {
+  let $app = document.querySelector('[data-view]')
+  $app.appendChild(renderCatalog(app.catalog))
+}
+
+renderAll()
