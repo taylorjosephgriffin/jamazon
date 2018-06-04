@@ -91,8 +91,7 @@ var app = {
   }
 }
 
-function render(app, item) {
-  let $catalog = document.querySelector('[data-view]')
+function render(item) {
   let $card = document.createElement('div')
   let $cardBody = document.createElement('div')
   let $cardTitle = document.createElement('h3')
@@ -101,20 +100,18 @@ function render(app, item) {
   let $cardText = document.createElement('p')
   let $cardBtn = document.createElement('a')
 
-  $card.classList.add('card')
-  $card.setAttribute('style', 'width: 18rem')
+  $card.classList.add('card', 'col-lg-3', 'col-md-4', 'col-sm-6', 'col-xs-12')
   $cardImg.classList.add('card-img-top')
-  $cardImg.setAttribute('src', app.catalog.items[item].imageUrl)
+  $cardImg.setAttribute('src', item.imageUrl)
   $cardImg.setAttribute('alt', 'Card image cap')
   $cardBody.classList.add('card-body')
   $cardText.classList.add('card-text', 'd-flex', 'justify-content-end')
-  $cardText.textContent = `$${app.catalog.items[item].price}`
+  $cardText.textContent = `$${item.price}`
   $cardTitle.classList.add('card-title', 'd-flex', 'justify-content-center')
-  $cardTitle.textContent = app.catalog.items[item].name
+  $cardTitle.textContent = item.name
   $cardBrand.classList.add('card-brand', 'd-flex', 'justify-content-center')
-  $cardBrand.textContent = `By ${app.catalog.items[item].brand}`
+  $cardBrand.textContent = `By ${item.brand}`
 
-  $catalog.appendChild($card)
   $card.appendChild($cardImg)
   $card.appendChild($cardBody)
   $cardBody.appendChild($cardText)
@@ -122,7 +119,27 @@ function render(app, item) {
   $cardBody.appendChild($cardBrand)
   $cardBody.appendChild($cardBtn)
 
-  return $catalog
+  return $card
 }
 
-render(app, 0)
+function renderCatalog(catalog) {
+  let $container = document.createElement('div')
+  let $headCont = document.createElement('h2')
+  let $headRow = document.createElement('div')
+  let $itemRow = document.createElement('div')
+
+  $headCont.textContent = 'Sal\'s Generic Online Music Retailer'
+  $headCont.classList.add('col', 'd-flex', 'justify-content-center')
+  $container.classList.add('container')
+  $headRow.classList.add('row')
+  $itemRow.classList.add('row')
+
+  $headRow.appendChild($headCont)
+  $container.appendChild($headRow)
+  $container.appendChild($itemRow)
+
+  for (let i = 0; i < catalog.items.length; i++) {
+    $itemRow.appendChild(render(catalog.items[i]))
+  }
+  return $container
+}
