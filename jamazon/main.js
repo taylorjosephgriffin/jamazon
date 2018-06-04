@@ -90,3 +90,39 @@ var app = {
     item: null
   }
 }
+
+function render(app, item) {
+  let $catalog = document.querySelector('[data-view]')
+  let $card = document.createElement('div')
+  let $cardBody = document.createElement('div')
+  let $cardTitle = document.createElement('h3')
+  let $cardBrand = document.createElement('h6')
+  let $cardImg = document.createElement('img')
+  let $cardText = document.createElement('p')
+  let $cardBtn = document.createElement('a')
+
+  $card.classList.add('card')
+  $card.setAttribute('style', 'width: 18rem')
+  $cardImg.classList.add('card-img-top')
+  $cardImg.setAttribute('src', app.catalog.items[item].imageUrl)
+  $cardImg.setAttribute('alt', 'Card image cap')
+  $cardBody.classList.add('card-body')
+  $cardText.classList.add('card-text', 'd-flex', 'justify-content-end')
+  $cardText.textContent = `$${app.catalog.items[item].price}`
+  $cardTitle.classList.add('card-title', 'd-flex', 'justify-content-center')
+  $cardTitle.textContent = app.catalog.items[item].name
+  $cardBrand.classList.add('card-brand', 'd-flex', 'justify-content-center')
+  $cardBrand.textContent = `By ${app.catalog.items[item].brand}`
+
+  $catalog.appendChild($card)
+  $card.appendChild($cardImg)
+  $card.appendChild($cardBody)
+  $cardBody.appendChild($cardText)
+  $cardBody.appendChild($cardTitle)
+  $cardBody.appendChild($cardBrand)
+  $cardBody.appendChild($cardBtn)
+
+  return $catalog
+}
+
+render(app, 0)
