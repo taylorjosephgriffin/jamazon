@@ -118,8 +118,11 @@ function eachDetail(itemId, catalog) {
 let $app = document.querySelector('[data-view]')
 
 $app.addEventListener('click', function (element) {
-  let $item = element.target.parentNode.closest('.card')
-  return $item.getAttribute('data-item-id')
+  let item = element.target.parentNode.closest('.card')
+  let itemId = item.getAttribute('data-item-id')
+  if (item) {
+    app.view = 'details'
+  }
 })
 
 renderCatalog()
