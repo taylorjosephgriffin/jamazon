@@ -115,4 +115,10 @@ function eachDetail(itemId, catalog) {
   }
 }
 
+let $app = document.querySelector('[data-view]')
+
+$app.addEventListener('click', function (element) {
+
+})
+
 renderCatalog()
