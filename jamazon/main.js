@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* global app */
 
-function renderCard(item) {
+function card(item) {
   let $card = document.createElement('div')
   let $cardBody = document.createElement('div')
   let $cardTitle = document.createElement('h3')
@@ -32,7 +32,7 @@ function renderCard(item) {
   return $card
 }
 
-function renderCatalog(catalog) {
+function catalog(catalog) {
   let $container = document.createElement('div')
   let $headCont = document.createElement('h2')
   let $headLogo = document.createElement('i')
@@ -54,19 +54,18 @@ function renderCatalog(catalog) {
   for (let i = 0; i < catalog.items.length; i++) {
     let $cardCol = document.createElement('div')
     $cardCol.classList.add('card-col', 'col-xl-2', 'col-lg-4', 'col-sm-12', 'col-12')
-    $cardCol.appendChild(renderCard(catalog.items[i]))
+    $cardCol.appendChild(card(catalog.items[i]))
     $itemRow.appendChild($cardCol)
   }
   return $container
 }
 
-function renderAll() {
+function renderCatalog() {
   let $app = document.querySelector('[data-view]')
-  $app.appendChild(renderCatalog(app.catalog))
+  $app.appendChild(catalog(app.catalog))
 }
 
-function renderDetail(item) {
-  let $app = document.querySelector('[data-view]')
+function detailTemplate(item) {
   let $detailCont = document.createElement('div')
   let $detailImg = document.createElement('img')
   let $detailName = document.createElement('h1')
@@ -84,6 +83,7 @@ function renderDetail(item) {
   $imgCont.classList.add('col', 'col-lg-3')
 
   $detailImg.setAttribute('src', item.imageUrl)
+
   $detailName.textContent = item.name
   $detailBrand.textContent = `By ${item.brand}`
   $detailDesc.textContent = item.description
@@ -102,9 +102,16 @@ function renderDetail(item) {
   $detailInfo.appendChild($detailDesc)
   $detailInfo.appendChild($detailDet)
   $detailInfo.appendChild($detailPrice)
-  $app.appendChild($detailCont)
 
   return $detailCont
 }
 
-renderAll()
+function eachDetail(itemId, catalog) {
+  for (let i = 0; i < catalog.items.length; i++) {
+    if (catalog.items[i].itemId === itemId) {
+      return catalog.items[i]
+    }
+  }
+}
+
+renderCatalog()
