@@ -85,7 +85,7 @@ var app = {
         imageUrl: 'https://goo.gl/gJYUxz'
       },
       {
-        itemId: 4,
+        itemId: 9,
         name: 'Hi-Hats',
         brand: 'Paiste',
         price: 400,
@@ -95,7 +95,7 @@ var app = {
         imageUrl: 'https://goo.gl/LV9l8O'
       },
       {
-        itemId: 5,
+        itemId: 10,
         name: 'Giant Step',
         brand: 'Sonor',
         price: 599,
@@ -105,7 +105,7 @@ var app = {
         imageUrl: 'https://goo.gl/zsFo1q'
       },
       {
-        itemId: 3,
+        itemId: 11,
         name: 'Djembe',
         brand: 'Remo',
         price: 49.99,
@@ -115,7 +115,7 @@ var app = {
         imageUrl: 'https://goo.gl/iKtU8x'
       },
       {
-        itemId: 1,
+        itemId: 12,
         brand: 'Ludwig',
         name: 'Black Beauty',
         price: 749.99,
