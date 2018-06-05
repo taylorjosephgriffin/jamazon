@@ -1,0 +1,56 @@
+* {
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: 100;
+}
+
+h2 {
+  padding-bottom: 17px;
+  margin-bottom: -10px;
+  font-size: 60px;
+  letter-spacing: 2px;
+  color: white;
+  background-color: rgb(55, 74, 114);
+}
+
+i {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.card {
+  font-style: italic;
+  height: 100%;
+  border: 2px solid black;
+}
+
+img {
+  margin-top: 15px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.card-text {
+  width: 100px;
+  font-size: 20px;
+  font-weight: 300;
+  color: rgb(238, 238, 238);
+}
+
+.badge {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: -20px;
+  border-radius: 0% 2%;
+  width: 90px;
+}
