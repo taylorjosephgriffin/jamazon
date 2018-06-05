@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* global app */
 
-function render(item) {
+function renderCard(item) {
   let $card = document.createElement('div')
   let $cardBody = document.createElement('div')
   let $cardTitle = document.createElement('h3')
@@ -53,8 +53,8 @@ function renderCatalog(catalog) {
 
   for (let i = 0; i < catalog.items.length; i++) {
     let $cardCol = document.createElement('div')
-    $cardCol.classList.add('card-col', 'col-xl-2', 'col-lg-4', 'col-sm-6', 'col-12')
-    $cardCol.appendChild(render(catalog.items[i]))
+    $cardCol.classList.add('card-col', 'col-xl-2', 'col-lg-4', 'col-sm-12', 'col-12')
+    $cardCol.appendChild(renderCard(catalog.items[i]))
     $itemRow.appendChild($cardCol)
   }
   return $container
@@ -63,6 +63,48 @@ function renderCatalog(catalog) {
 function renderAll() {
   let $app = document.querySelector('[data-view]')
   $app.appendChild(renderCatalog(app.catalog))
+}
+
+function renderDetail(item) {
+  let $app = document.querySelector('[data-view]')
+  let $detailCont = document.createElement('div')
+  let $detailImg = document.createElement('img')
+  let $detailName = document.createElement('h1')
+  let $detailBrand = document.createElement('h6')
+  let $detailDesc = document.createElement('p')
+  let $detailDet = document.createElement('p')
+  let $detailPrice = document.createElement('span')
+  let $detailInfo = document.createElement('div')
+  let $imgCont = document.createElement('div')
+  let $detailRow = document.createElement('div')
+
+  $detailCont.classList.add('container')
+  $detailInfo.classList.add('col', 'col-lg-9')
+  $detailRow.classList.add('row')
+  $imgCont.classList.add('col', 'col-lg-3')
+
+  $detailImg.setAttribute('src', item.imageUrl)
+  $detailName.textContent = item.name
+  $detailBrand.textContent = `By ${item.brand}`
+  $detailDesc.textContent = item.description
+  $detailDet.textContent = item.details
+  $detailPrice.textConent = item.price
+
+  $detailImg.classList.add('detail-img', 'd-flex', 'justify-content-start')
+  $detailName.classList.add('d-flex', 'justify-content-start')
+
+  $detailCont.appendChild($detailRow)
+  $detailRow.appendChild($imgCont)
+  $imgCont.appendChild($detailImg)
+  $detailRow.appendChild($detailInfo)
+  $detailInfo.appendChild($detailName)
+  $detailInfo.appendChild($detailBrand)
+  $detailInfo.appendChild($detailDesc)
+  $detailInfo.appendChild($detailDet)
+  $detailInfo.appendChild($detailPrice)
+  $app.appendChild($detailCont)
+
+  return $detailCont
 }
 
 renderAll()
