@@ -11,6 +11,7 @@ function card(item) {
   let $cardBtn = document.createElement('a')
 
   $card.classList.add('card')
+  $card.setAttribute('data-item-id', item.itemId)
   $cardImg.classList.add('card-img-top')
   $cardImg.setAttribute('src', item.imageUrl)
   $cardImg.setAttribute('alt', 'Card image cap')
