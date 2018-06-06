@@ -122,6 +122,7 @@ $app.addEventListener('click', function (element) {
   let itemId = item.getAttribute('data-item-id')
   if (item) {
     app.view = 'details'
+    app.details.item = app.catalog.items[itemId - 1]
   }
 })
 
