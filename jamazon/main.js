@@ -126,4 +126,16 @@ $app.addEventListener('click', function (element) {
   }
 })
 
+function showHidden(view) {
+  let $eachView = document.querySelectorAll('[data-view]')
+  $eachView.forEach(function (element) {
+    if (element.getAttribute('data-view') !== view) {
+      element.classList.add('hidden')
+    }
+    else {
+      element.classList.remove('hidden')
+    }
+  })
+}
+
 renderCatalog()
