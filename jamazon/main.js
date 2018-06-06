@@ -117,7 +117,6 @@ $app.addEventListener('click', function (element) {
   if (item) {
     let itemId = item.getAttribute('data-item-id')
     app.view = 'details'
-    showHidden(app.view)
     app.details.item = app.catalog.items[itemId - 1]
     renderAll()
   }
@@ -144,6 +143,7 @@ function renderAll() {
   else if (app.view === 'details') {
     $appDetails.appendChild(detailTemplate(app.details.item))
   }
+  showHidden(app.view)
 }
 
 renderAll()
