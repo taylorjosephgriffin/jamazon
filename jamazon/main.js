@@ -114,8 +114,8 @@ let $app = document.querySelector('[data-view]')
 
 $app.addEventListener('click', function (element) {
   let item = element.target.parentNode.closest('.card')
-  let itemId = item.getAttribute('data-item-id')
   if (item) {
+    let itemId = item.getAttribute('data-item-id')
     app.view = 'details'
     showHidden(app.view)
     app.details.item = app.catalog.items[itemId - 1]
