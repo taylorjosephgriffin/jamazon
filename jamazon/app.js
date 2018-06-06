@@ -128,5 +128,8 @@ var app = {
   },
   details: {
     item: null
+  },
+  cart: {
+    item: null
   }
 }
