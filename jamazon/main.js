@@ -61,11 +61,6 @@ function catalog(catalog) {
   return $container
 }
 
-function renderCatalog() {
-  let $app = document.querySelector('[data-view]')
-  $app.appendChild(catalog(app.catalog))
-}
-
 function detailTemplate(item) {
   let $detailCont = document.createElement('div')
   let $detailImg = document.createElement('img')
@@ -138,4 +133,15 @@ function showHidden(view) {
   })
 }
 
-renderCatalog()
+function renderAll() {
+  let $appCatalog = document.querySelectorAll('[data-view]')[0]
+  let $appDetails = document.querySelectorAll('[data-view]')[1]
+  if (app.view === 'catalog') {
+    $appCatalog.appendChild(catalog(app.catalog))
+  }
+  else if (app.view === 'details') {
+    $appDetails.appendChild(detailTemplate(app.details.item))
+  }
+}
+
+renderAll()
