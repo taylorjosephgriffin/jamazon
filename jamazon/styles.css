@@ -57,8 +57,7 @@ img {
 
 .detail-img {
   height: 225px;
-  width: 225px;
-  margin-left: 30px;
+  margin-left: -80px;
 }
 
 .container {
