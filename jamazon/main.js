@@ -135,8 +135,8 @@ function showHidden(view) {
 }
 
 function renderAll() {
-  const $appCatalog = document.querySelectorAll('[data-view]')[0]
-  const $appDetails = document.querySelectorAll('[data-view]')[1]
+  const $appCatalog = document.querySelector('[data-view="catalog"]')
+  const $appDetails = document.querySelector('[data-view="details"]')
   if (app.view === 'catalog') {
     $appCatalog.appendChild(catalog(app.catalog))
   }
