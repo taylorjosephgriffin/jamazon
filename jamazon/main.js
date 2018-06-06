@@ -2,13 +2,13 @@
 /* global app */
 
 function card(item) {
-  let $card = document.createElement('div')
-  let $cardBody = document.createElement('div')
-  let $cardTitle = document.createElement('h3')
-  let $cardBrand = document.createElement('h6')
-  let $cardImg = document.createElement('img')
-  let $cardText = document.createElement('span')
-  let $cardBtn = document.createElement('a')
+  const $card = document.createElement('div')
+  const $cardBody = document.createElement('div')
+  const $cardTitle = document.createElement('h3')
+  const $cardBrand = document.createElement('h6')
+  const $cardImg = document.createElement('img')
+  const $cardText = document.createElement('span')
+  const $cardBtn = document.createElement('a')
 
   $card.classList.add('card')
   $card.setAttribute('data-item-id', item.itemId)
@@ -34,11 +34,11 @@ function card(item) {
 }
 
 function catalog(catalog) {
-  let $container = document.createElement('div')
-  let $headCont = document.createElement('h2')
-  let $headLogo = document.createElement('i')
-  let $headRow = document.createElement('div')
-  let $itemRow = document.createElement('div')
+  const $container = document.createElement('div')
+  const $headCont = document.createElement('h2')
+  const $headLogo = document.createElement('i')
+  const $headRow = document.createElement('div')
+  const $itemRow = document.createElement('div')
 
   $headCont.textContent = 'jamazon'
   $headCont.classList.add('col', 'd-flex', 'justify-content-left')
@@ -53,7 +53,7 @@ function catalog(catalog) {
   $container.appendChild($itemRow)
 
   for (let i = 0; i < catalog.items.length; i++) {
-    let $cardCol = document.createElement('div')
+    const $cardCol = document.createElement('div')
     $cardCol.classList.add('card-col', 'col-xl-2', 'col-lg-4', 'col-sm-12', 'col-12')
     $cardCol.appendChild(card(catalog.items[i]))
     $itemRow.appendChild($cardCol)
@@ -62,16 +62,16 @@ function catalog(catalog) {
 }
 
 function detailTemplate(item) {
-  let $detailCont = document.createElement('div')
-  let $detailImg = document.createElement('img')
-  let $detailName = document.createElement('h1')
-  let $detailBrand = document.createElement('h6')
-  let $detailDesc = document.createElement('p')
-  let $detailDet = document.createElement('p')
-  let $detailPrice = document.createElement('span')
-  let $detailInfo = document.createElement('div')
-  let $imgCont = document.createElement('div')
-  let $detailRow = document.createElement('div')
+  const $detailCont = document.createElement('div')
+  const $detailImg = document.createElement('img')
+  const $detailName = document.createElement('h1')
+  const $detailBrand = document.createElement('h6')
+  const $detailDesc = document.createElement('p')
+  const $detailDet = document.createElement('p')
+  const $detailPrice = document.createElement('span')
+  const $detailInfo = document.createElement('div')
+  const $imgCont = document.createElement('div')
+  const $detailRow = document.createElement('div')
 
   $detailCont.classList.add('container')
   $detailInfo.classList.add('col', 'col-lg-9')
@@ -124,7 +124,7 @@ $app.addEventListener('click', function (element) {
 })
 
 function showHidden(view) {
-  let $eachView = document.querySelectorAll('[data-view]')
+  const $eachView = document.querySelectorAll('[data-view]')
   $eachView.forEach(function (element) {
     if (element.getAttribute('data-view') !== view) {
       element.classList.add('hidden')
@@ -136,8 +136,8 @@ function showHidden(view) {
 }
 
 function renderAll() {
-  let $appCatalog = document.querySelectorAll('[data-view]')[0]
-  let $appDetails = document.querySelectorAll('[data-view]')[1]
+  const $appCatalog = document.querySelectorAll('[data-view]')[0]
+  const $appDetails = document.querySelectorAll('[data-view]')[1]
   if (app.view === 'catalog') {
     $appCatalog.appendChild(catalog(app.catalog))
   }
