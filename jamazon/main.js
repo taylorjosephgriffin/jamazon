@@ -152,12 +152,14 @@ function showHidden(view) {
 function renderAll() {
   const $appCatalog = document.querySelector('[data-view="catalog"]')
   const $appDetails = document.querySelector('[data-view="details"]')
+  const $cartLogo = document.querySelector('#cart')
   if (app.view === 'catalog') {
     $appCatalog.appendChild(catalog(app.catalog))
   }
   else if (app.view === 'details') {
     $appDetails.appendChild(detailTemplate(app.details.item))
   }
+  $cartLogo.appendChild(cartCount(app.cart))
   showHidden(app.view)
 }
 
