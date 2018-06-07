@@ -70,6 +70,10 @@ img {
   display: none;
 }
 
+.header {
+  width: 100;
+}
+
 #cart {
   position: absolute;
   top: -20px;
