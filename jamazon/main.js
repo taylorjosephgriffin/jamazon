@@ -150,6 +150,7 @@ $appDetails.addEventListener('click', function (element) {
   if (element.target.getAttribute('id', 'addcart')) {
     app.cart.items.push([app.details.item])
   }
+  renderAll()
 })
 
 function showHidden(view) {
@@ -175,6 +176,8 @@ function renderAll() {
     $appDetails.innerHTML = ''
     $appDetails.appendChild(detailTemplate(app.details.item))
   }
+  $cartLogo.innerHTML = ''
+  $cartLogo.appendChild(cartCount(app.cart))
   showHidden(app.view)
 }
 
