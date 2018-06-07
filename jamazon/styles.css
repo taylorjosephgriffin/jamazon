@@ -79,3 +79,8 @@ img {
   margin-top: 0;
   padding-top: 0;
 }
+
+button {
+  float: right;
+  margin-right: 30px;
+}

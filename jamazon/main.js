@@ -72,24 +72,28 @@ function detailTemplate(item) {
   const $detailInfo = document.createElement('div')
   const $imgCont = document.createElement('div')
   const $detailRow = document.createElement('div')
+  const $cartBtn = document.createElement('button')
 
   $detailCont.classList.add('container')
   $detailInfo.classList.add('col', 'col-lg-9')
   $detailRow.classList.add('row')
   $imgCont.classList.add('col', 'col-lg-3')
+  $detailImg.classList.add('detail-img', 'd-flex', 'justify-content-start')
+  $detailName.classList.add('d-flex', 'justify-content-start')
+  $cartBtn.classList.add('btn', 'btn-success', 'd-inline-flex', 'justify-content-around')
 
   $detailImg.setAttribute('src', item.imageUrl)
+  $cartBtn.setAttribute('style', 'margin-top = 10px')
 
   $detailName.textContent = item.name
   $detailBrand.textContent = `By ${item.brand}`
   $detailDesc.textContent = item.description
   $detailDet.textContent = item.details
-  $detailPrice.textConent = item.price
-
-  $detailImg.classList.add('detail-img', 'd-flex', 'justify-content-start')
-  $detailName.classList.add('d-flex', 'justify-content-start')
+  $detailPrice.textContent = '$' + item.price
+  $cartBtn.textContent = 'add to cart'
 
   $detailCont.appendChild($detailRow)
+  $detailPrice.appendChild($cartBtn)
   $detailRow.appendChild($imgCont)
   $imgCont.appendChild($detailImg)
   $detailRow.appendChild($detailInfo)
