@@ -74,8 +74,7 @@ function detailTemplate(item) {
   const $imgCont = document.createElement('div')
   const $detailRow = document.createElement('div')
   const $cartBtn = document.createElement('button')
-
-  const $header = document.querySelector('.header')
+  const $returnBtn = document.createElement('button')
 
   $detailCont.classList.add('container')
   $detailInfo.classList.add('col', 'col-lg-9')
@@ -83,10 +82,12 @@ function detailTemplate(item) {
   $imgCont.classList.add('col', 'col-lg-3')
   $detailImg.classList.add('detail-img', 'd-flex', 'justify-content-start')
   $detailName.classList.add('d-flex', 'justify-content-start')
-  $cartBtn.classList.add('btn', 'btn-success', 'd-inline-flex', 'justify-content-around')
+  $cartBtn.classList.add('btn', 'btn-success')
+  $returnBtn.classList.add('btn', 'btn-secondary')
 
   $detailImg.setAttribute('src', item.imageUrl)
   $cartBtn.setAttribute('id', 'addcart')
+  $returnBtn.setAttribute('id', 'return')
 
   $detailName.textContent = item.name
   $detailBrand.textContent = `By ${item.brand}`
@@ -94,10 +95,12 @@ function detailTemplate(item) {
   $detailDet.textContent = item.details
   $detailPrice.textContent = '$' + item.price
   $cartBtn.textContent = 'add to cart'
+  $returnBtn.textContent = 'continue shopping'
 
   $contAll.appendChild($detailRow)
   $detailCont.appendChild($detailRow)
   $detailPrice.appendChild($cartBtn)
+  $detailPrice.appendChild($returnBtn)
   $detailRow.appendChild($imgCont)
   $imgCont.appendChild($detailImg)
   $detailRow.appendChild($detailInfo)
@@ -147,8 +150,15 @@ function cartCount(cart) {
 const $appDetails = document.querySelector('[data-view="details"]')
 
 $appDetails.addEventListener('click', function (element) {
-  if (element.target.getAttribute('id', 'addcart')) {
+  if (element.target.getAttribute('id') === 'addcart') {
     app.cart.items.push([app.details.item])
+  }
+  renderAll()
+})
+
+$appDetails.addEventListener('click', function (element) {
+  if (element.target.getAttribute('id') === 'return') {
+    app.view = 'catalog'
   }
   renderAll()
 })
