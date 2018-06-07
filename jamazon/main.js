@@ -160,6 +160,7 @@ $appDetails.addEventListener('click', function (element) {
   if (element.target.getAttribute('id') === 'return') {
     app.view = 'catalog'
   }
+  renderAll()
 })
 
 function showHidden(view) {
