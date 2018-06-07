@@ -141,6 +141,12 @@ function cartCount(cart) {
   return $countBadge
 }
 
+const $appDetails = document.querySelector('[data-view-"details"]')
+
+$appDetails.addEventListener('click', function (element) {
+
+})
+
 function showHidden(view) {
   const $eachView = document.querySelectorAll('[data-view]')
   $eachView.forEach(function (element) {
