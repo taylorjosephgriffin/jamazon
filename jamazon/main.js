@@ -110,17 +110,32 @@ function eachDetail(itemId, catalog) {
   }
 }
 
-let $app = document.querySelector('[data-view]')
+const $app = document.querySelector('[data-view]')
 
 $app.addEventListener('click', function (element) {
-  let item = element.target.parentNode.closest('.card')
+  const item = element.target.parentNode.closest('.card')
   if (item) {
-    let itemId = item.getAttribute('data-item-id')
+    const itemId = item.getAttribute('data-item-id')
     app.view = 'details'
     app.details.item = app.catalog.items[itemId - 1]
     renderAll()
   }
 })
+
+function cartCount(cart) {
+  const $countBadge = document.createElement('span')
+
+  $countBadge.classList.add('badge', 'badge-warning')
+
+  $countBadge.textContent = app.cart.items.length
+
+  const $cartLogo = document.createElement('i')
+  $cartLogo.classList.add('fas', 'fa-shopping-cart')
+
+  $countBadge.appendChild($cartLogo)
+
+  return $countBadge
+}
 
 function showHidden(view) {
   const $eachView = document.querySelectorAll('[data-view]')

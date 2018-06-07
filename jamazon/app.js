@@ -130,6 +130,7 @@ var app = {
     item: null
   },
   cart: {
-    item: null
+    items: [
+    ]
   }
 }
