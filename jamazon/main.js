@@ -157,7 +157,9 @@ $appDetails.addEventListener('click', function (element) {
 })
 
 $appDetails.addEventListener('click', function (element) {
-
+  if (element.target.getAttribute('id') === 'return') {
+    app.view = 'catalog'
+  }
 })
 
 function showHidden(view) {
