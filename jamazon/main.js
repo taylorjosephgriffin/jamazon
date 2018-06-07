@@ -87,6 +87,7 @@ function detailTemplate(item) {
 
   $detailImg.setAttribute('src', item.imageUrl)
   $cartBtn.setAttribute('id', 'addcart')
+  $returnBtn.setAttribute('id', 'return')
 
   $detailName.textContent = item.name
   $detailBrand.textContent = `By ${item.brand}`
@@ -149,10 +150,14 @@ function cartCount(cart) {
 const $appDetails = document.querySelector('[data-view="details"]')
 
 $appDetails.addEventListener('click', function (element) {
-  if (element.target.getAttribute('id', 'addcart')) {
+  if (element.target.getAttribute('id') === 'addcart') {
     app.cart.items.push([app.details.item])
   }
   renderAll()
+})
+
+$appDetails.addEventListener('click', function (element) {
+
 })
 
 function showHidden(view) {
