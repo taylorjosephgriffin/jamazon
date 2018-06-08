@@ -191,7 +191,7 @@ function cartSummary(cart) {
   $totalCont.appendChild($total)
   $totalCont.appendChild($returnBtn)
 
-  for (let i = 0; i < app.cart.items.length; i++) {
+  for (let i = 0; i < cart.items.length; i++) {
     $cartRow.appendChild(cartItem(app.cart, i))
     cartTotal += app.cart.items[i].price
     $total.textContent = 'Total: $' + cartTotal.toFixed(2)
