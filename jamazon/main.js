@@ -216,8 +216,8 @@ const $appDetails = document.querySelector('[data-view="details"]')
 const $cart = document.querySelector('[data-view="cart"]')
 const $appCart = document.querySelector('#cart')
 
-$appCatalog.addEventListener('click', function (element) {
-  const item = element.target.parentNode.closest('.card')
+$appCatalog.addEventListener('click', function (event) {
+  const item = event.target.parentNode.closest('.card')
   if (item) {
     const itemId = item.getAttribute('data-item-id')
     app.view = 'details'
