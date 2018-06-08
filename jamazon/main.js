@@ -116,14 +116,6 @@ function detailTemplate(item) {
   return $detailCont
 }
 
-function eachDetail(itemId, catalog) {
-  for (let i = 0; i < catalog.items.length; i++) {
-    if (catalog.items[i].itemId === itemId) {
-      return catalog.items[i]
-    }
-  }
-}
-
 function cartCount(cart) {
   const $countBadge = document.createElement('span')
   const $cartLogo = document.createElement('i')
@@ -160,7 +152,7 @@ function cartItem(cart, index) {
   $cartCol.appendChild($cartBrand)
   $cartCol.appendChild($cartPrice)
 
-  return document.querySelector('[data-view="cart"]').appendChild($cartCol)
+  return $cartCol
 }
 
 function cartSummary(cart) {
@@ -211,6 +203,14 @@ function showHidden(view) {
   })
 }
 
+function eachDetail(itemId, catalog) {
+  for (let i = 0; i < catalog.items.length; i++) {
+    if (catalog.items[i].itemId === itemId) {
+      return catalog.items[i]
+    }
+  }
+}
+
 const $appCatalog = document.querySelector('[data-view="catalog"]')
 const $appDetails = document.querySelector('[data-view="details"]')
 const $cart = document.querySelector('[data-view="cart"]')
@@ -219,9 +219,10 @@ const $appCart = document.querySelector('#cart')
 $appCatalog.addEventListener('click', function (event) {
   const item = event.target.parentNode.closest('.card')
   if (item) {
-    const itemId = item.getAttribute('data-item-id')
+    let itemId = item.getAttribute('data-item-id')
     app.view = 'details'
-    app.details.item = app.catalog.items[itemId - 1]
+    app.details.item = eachDetail(itemId - 0, app.catalog)
+    console.log(item)
     catalog(app.catalog)
     renderAll()
   }
@@ -258,7 +259,6 @@ $cart.addEventListener('click', function (event) {
 function renderAll() {
   const $appCatalog = document.querySelector('[data-view="catalog"]')
   const $appDetails = document.querySelector('[data-view="details"]')
-  const $cartSum = document.querySelector('[data-view="cart"]')
   const $cartLogo = document.querySelector('#cart')
   if (app.view === 'catalog') {
     $appCatalog.innerHTML = ''
@@ -269,8 +269,8 @@ function renderAll() {
     $appDetails.appendChild(detailTemplate(app.details.item))
   }
   else if (app.view === 'cart') {
-    $cartSum.innerHTML = ''
-    $cartSum.appendChild(cartSummary(app.cart))
+    $cart.innerHTML = ''
+    $cart.appendChild(cartSummary(app.cart))
   }
   $cartLogo.innerHTML = ''
   $cartLogo.appendChild(cartCount(app.cart))
