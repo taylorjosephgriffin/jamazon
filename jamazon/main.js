@@ -55,7 +55,7 @@ function catalog(catalog) {
 
   for (let i = 0; i < catalog.items.length; i++) {
     const $cardCol = document.createElement('div')
-    $cardCol.classList.add('card-col', 'col-xl-4', 'col-lg-4', 'col-sm-12', 'col-12')
+    $cardCol.classList.add('card-col', 'col-xl-3', 'col-lg-4', 'col-sm-12', 'col-12')
     $cardCol.appendChild(card(catalog.items[i]))
     $itemRow.appendChild($cardCol)
   }
@@ -124,23 +124,12 @@ function eachDetail(itemId, catalog) {
   }
 }
 
-const $app = document.querySelector('[data-view]')
-
-$app.addEventListener('click', function (element) {
-  const item = element.target.parentNode.closest('.card')
-  if (item) {
-    const itemId = item.getAttribute('data-item-id')
-    app.view = 'details'
-    app.details.item = app.catalog.items[itemId - 1]
-    renderAll()
-  }
-})
-
 function cartCount(cart) {
   const $countBadge = document.createElement('span')
   const $cartLogo = document.createElement('i')
 
-  $countBadge.classList.add('badge', 'badge-warning')
+  $countBadge.classList.add('btn', 'btn-warning')
+  $countBadge.setAttribute('id', 'cart-button')
   $cartLogo.classList.add('fas', 'fa-shopping-cart')
 
   $countBadge.textContent = app.cart.items.length
@@ -150,48 +139,57 @@ function cartCount(cart) {
   return $countBadge
 }
 
-const $appDetails = document.querySelector('[data-view="details"]')
-
-$appDetails.addEventListener('click', function (element) {
-  if (element.target.getAttribute('id') === 'addcart') {
-    app.cart.items.push(app.details.item)
-  }
-  renderAll()
-})
-
-$appDetails.addEventListener('click', function (element) {
-  if (element.target.getAttribute('id') === 'return') {
-    app.view = 'catalog'
-  }
-  renderAll()
-})
-
-function cartSummary(cart) {
-  const $cartCont = document.createElement('div')
-  const $cartRow = document.createElement('div')
+function cartItem(cart, index) {
   const $cartCol = document.createElement('div')
   const $cartName = document.createElement('h1')
   const $cartBrand = document.createElement('h6')
   const $cartPrice = document.createElement('span')
-  const $cartImg = document.createElement('img')
+  const $img = document.createElement('img')
 
-  $cartCont.classList.add('container')
-  $cartRow.classList.add('row')
-  $cartCol.classList.add('col', 'col-lg-12')
+  $img.setAttribute('src', app.cart.items[index].imageUrl)
 
-  $cartImg.setAttribute('src', app.cart.items.imageUrl)
+  $cartCol.classList.add('col', 'col-lg-4')
+  $img.classList.add('cart-img')
 
-  $cartName.textContent = app.cart.items.name
-  $cartBrand.textContent = app.cart.items.brand
-  $cartPrice.textContent = app.cart.items.price
+  $cartName.textContent = app.cart.items[index].name
+  $cartBrand.textContent = app.cart.items[index].brand
+  $cartPrice.textContent = '$' + app.cart.items[index].price
 
-  $cartCont.appendChild($cartRow)
-  $cartRow.appendChild($cartCol)
+  $cartCol.appendChild($img)
   $cartCol.appendChild($cartName)
   $cartCol.appendChild($cartBrand)
   $cartCol.appendChild($cartPrice)
-  $cartCol.appendChild($cartImg)
 
+  return document.querySelector('[data-view="cart"]').appendChild($cartCol)
+}
+
+function cartSummary(cart) {
+  const $cartCont = document.createElement('div')
+  const $cartRow = document.createElement('div')
+  const $cartHead = document.createElement('div')
+  const $totalCont = document.createElement('div')
+  const $total = document.createElement('h1')
+  let cartTotal = 0
+
+  $cartCont.classList.add('container-fluid')
+  $cartRow.classList.add('row', 'cart-row')
+  $cartHead.classList.add('cart-head')
+  $totalCont.setAttribute('id', 'total')
+
+  $cartHead.textContent = 'cart'
+
+  $cartCont.setAttribute('id', 'cart-item')
+
+  $cartCont.appendChild($cartHead)
+  $cartCont.appendChild($cartRow)
+  $cartCont.appendChild($totalCont)
+  $totalCont.appendChild($total)
+
+  for (let i = 0; i < app.cart.items.length; i++) {
+    $cartRow.appendChild(cartItem(app.cart, i))
+    cartTotal += app.cart.items[i].price
+    $total.textContent = 'Total: $' + cartTotal.toFixed(2)
+  }
   return $cartCont
 }
 
@@ -207,9 +205,46 @@ function showHidden(view) {
   })
 }
 
+const $appCatalog = document.querySelector('[data-view="catalog"]')
+const $appDetails = document.querySelector('[data-view="details"]')
+const $appCart = document.querySelector('#cart')
+
+$appCatalog.addEventListener('click', function (element) {
+  const item = element.target.parentNode.closest('.card')
+  if (item) {
+    const itemId = item.getAttribute('data-item-id')
+    app.view = 'details'
+    app.details.item = app.catalog.items[itemId - 1]
+    catalog(app.catalog)
+    renderAll()
+  }
+})
+
+$appDetails.addEventListener('click', function (event) {
+  if (event.target.getAttribute('id') === 'addcart') {
+    app.cart.items.push(app.details.item)
+  }
+  renderAll()
+})
+
+$appDetails.addEventListener('click', function (event) {
+  if (event.target.getAttribute('id') === 'return') {
+    app.view = 'catalog'
+  }
+  renderAll()
+})
+
+$appCart.addEventListener('click', function (event) {
+  if (event.target.getAttribute('id') === 'cart-button') {
+    app.view = 'cart'
+  }
+  renderAll()
+})
+
 function renderAll() {
   const $appCatalog = document.querySelector('[data-view="catalog"]')
   const $appDetails = document.querySelector('[data-view="details"]')
+  const $cartSum = document.querySelector('[data-view="cart"]')
   const $cartLogo = document.querySelector('#cart')
   if (app.view === 'catalog' && $appCatalog.innerHTML === '') {
     $appCatalog.appendChild(catalog(app.catalog))
@@ -217,6 +252,10 @@ function renderAll() {
   else if (app.view === 'details') {
     $appDetails.innerHTML = ''
     $appDetails.appendChild(detailTemplate(app.details.item))
+  }
+  else if (app.view === 'cart') {
+    $cartSum.innerHTML = ''
+    $cartSum.appendChild(cartSummary(app.cart))
   }
   $cartLogo.innerHTML = ''
   $cartLogo.appendChild(cartCount(app.cart))

@@ -59,6 +59,10 @@ img {
   height: 225px;
 }
 
+.cart-img {
+  height: 225px;
+}
+
 .container {
   margin-top: 50px;
   padding-top: 100px;
@@ -67,10 +71,6 @@ img {
 
 .hidden {
   display: none;
-}
-
-.header {
-  width: 100;
 }
 
 #cart {
@@ -94,4 +94,23 @@ button {
   font-weight: 100;
   font-size: 15px;
   font-style: italic;
+}
+
+.btn-warning {
+  margin-left: -14px;
+}
+
+.cart-head {
+  padding-bottom: 17px;
+  margin-bottom: -10px;
+  font-size: 60px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: white;
+  background-color: rgb(55, 74, 114);
+}
+
+#total {
+  margin-top: 40px;
+  color: forestgreen;
 }
