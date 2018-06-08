@@ -169,21 +169,27 @@ function cartSummary(cart) {
   const $cartHead = document.createElement('div')
   const $totalCont = document.createElement('div')
   const $total = document.createElement('h1')
+  const $returnBtn = document.createElement('button')
+
   let cartTotal = 0
 
   $cartCont.classList.add('container-fluid')
   $cartRow.classList.add('row', 'cart-row')
   $cartHead.classList.add('cart-head')
-  $totalCont.setAttribute('id', 'total')
+  $returnBtn.classList.add('btn', 'btn-secondary')
 
   $cartHead.textContent = 'cart'
+  $returnBtn.textContent = 'continue shopping'
 
   $cartCont.setAttribute('id', 'cart-item')
+  $totalCont.setAttribute('id', 'total')
+  $returnBtn.setAttribute('id', 'returncart')
 
   $cartCont.appendChild($cartHead)
   $cartCont.appendChild($cartRow)
   $cartCont.appendChild($totalCont)
   $totalCont.appendChild($total)
+  $totalCont.appendChild($returnBtn)
 
   for (let i = 0; i < app.cart.items.length; i++) {
     $cartRow.appendChild(cartItem(app.cart, i))
@@ -207,6 +213,7 @@ function showHidden(view) {
 
 const $appCatalog = document.querySelector('[data-view="catalog"]')
 const $appDetails = document.querySelector('[data-view="details"]')
+const $cart = document.querySelector('[data-view="cart"]')
 const $appCart = document.querySelector('#cart')
 
 $appCatalog.addEventListener('click', function (element) {
@@ -237,6 +244,13 @@ $appDetails.addEventListener('click', function (event) {
 $appCart.addEventListener('click', function (event) {
   if (event.target.getAttribute('id') === 'cart-button') {
     app.view = 'cart'
+  }
+  renderAll()
+})
+
+$cart.addEventListener('click', function (event) {
+  if (event.target.getAttribute('id') === 'returncart') {
+    app.view = 'catalog'
   }
   renderAll()
 })
