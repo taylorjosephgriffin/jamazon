@@ -18,6 +18,7 @@ function card(item) {
   $cardBody.classList.add('card-body')
   $cardText.classList.add('card-text', 'd-flex', 'justify-content-center', 'badge', 'badge-pill', 'badge-success')
   $cardText.textContent = `$${item.price}`
+  $cardText.setAttribute('id', 'card-badge')
   $cardTitle.classList.add('card-title', 'd-flex', 'justify-content-center')
   $cardTitle.textContent = item.name
   $cardBrand.classList.add('card-brand', 'd-flex', 'justify-content-center')
@@ -54,7 +55,7 @@ function catalog(catalog) {
 
   for (let i = 0; i < catalog.items.length; i++) {
     const $cardCol = document.createElement('div')
-    $cardCol.classList.add('card-col', 'col-xl-2', 'col-lg-4', 'col-sm-12', 'col-12')
+    $cardCol.classList.add('card-col', 'col-xl-4', 'col-lg-4', 'col-sm-12', 'col-12')
     $cardCol.appendChild(card(catalog.items[i]))
     $itemRow.appendChild($cardCol)
   }
@@ -80,10 +81,12 @@ function detailTemplate(item) {
   $detailInfo.classList.add('col', 'col-lg-9')
   $detailRow.classList.add('row')
   $imgCont.classList.add('col', 'col-lg-3')
-  $detailImg.classList.add('detail-img', 'd-flex', 'justify-content-start')
+  $detailImg.classList.add('detail-img')
   $detailName.classList.add('d-flex', 'justify-content-start')
   $cartBtn.classList.add('btn', 'btn-success')
   $returnBtn.classList.add('btn', 'btn-secondary')
+  $detailPrice.classList.add('badge', 'badge-success')
+  $detailPrice.setAttribute('id', 'detail-price')
 
   $detailImg.setAttribute('src', item.imageUrl)
   $cartBtn.setAttribute('id', 'addcart')
@@ -99,8 +102,8 @@ function detailTemplate(item) {
 
   $contAll.appendChild($detailRow)
   $detailCont.appendChild($detailRow)
-  $detailPrice.appendChild($cartBtn)
-  $detailPrice.appendChild($returnBtn)
+  $detailCont.appendChild($cartBtn)
+  $detailCont.appendChild($returnBtn)
   $detailRow.appendChild($imgCont)
   $imgCont.appendChild($detailImg)
   $detailRow.appendChild($detailInfo)
@@ -151,7 +154,7 @@ const $appDetails = document.querySelector('[data-view="details"]')
 
 $appDetails.addEventListener('click', function (element) {
   if (element.target.getAttribute('id') === 'addcart') {
-    app.cart.items.push([app.details.item])
+    app.cart.items.push(app.details.item)
   }
   renderAll()
 })
@@ -162,6 +165,35 @@ $appDetails.addEventListener('click', function (element) {
   }
   renderAll()
 })
+
+function cartSummary(cart) {
+  const $cartCont = document.createElement('div')
+  const $cartRow = document.createElement('div')
+  const $cartCol = document.createElement('div')
+  const $cartName = document.createElement('h1')
+  const $cartBrand = document.createElement('h6')
+  const $cartPrice = document.createElement('span')
+  const $cartImg = document.createElement('img')
+
+  $cartCont.classList.add('container')
+  $cartRow.classList.add('row')
+  $cartCol.classList.add('col', 'col-lg-12')
+
+  $cartImg.setAttribute('src', app.cart.items.imageUrl)
+
+  $cartName.textContent = app.cart.items.name
+  $cartBrand.textContent = app.cart.items.brand
+  $cartPrice.textContent = app.cart.items.price
+
+  $cartCont.appendChild($cartRow)
+  $cartRow.appendChild($cartCol)
+  $cartCol.appendChild($cartName)
+  $cartCol.appendChild($cartBrand)
+  $cartCol.appendChild($cartPrice)
+  $cartCol.appendChild($cartImg)
+
+  return $cartCont
+}
 
 function showHidden(view) {
   const $eachView = document.querySelectorAll('[data-view]')
@@ -179,7 +211,7 @@ function renderAll() {
   const $appCatalog = document.querySelector('[data-view="catalog"]')
   const $appDetails = document.querySelector('[data-view="details"]')
   const $cartLogo = document.querySelector('#cart')
-  if (app.view === 'catalog') {
+  if (app.view === 'catalog' && $appCatalog.innerHTML === '') {
     $appCatalog.appendChild(catalog(app.catalog))
   }
   else if (app.view === 'details') {

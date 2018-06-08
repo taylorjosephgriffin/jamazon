@@ -47,7 +47,7 @@ img {
   color: rgb(238, 238, 238);
 }
 
-.badge {
+#card-badge {
   position: absolute;
   margin-top: 20px;
   margin-left: -20px;
@@ -57,11 +57,10 @@ img {
 
 .detail-img {
   height: 225px;
-  margin-left: -80px;
 }
 
 .container {
-  margin-top: 250px;
+  margin-top: 50px;
   padding-top: 100px;
   height: 500px;
 }
@@ -76,15 +75,23 @@ img {
 
 #cart {
   position: absolute;
-  top: -20px;
+  top: -8px;
   left: 95vw;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   margin-top: 0;
   padding-top: 0;
 }
 
 button {
   float: right;
-  margin-right: 30px;
+  margin-top: 10px;
+  margin-right: 33px;
+}
+
+#detail-price {
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  font-style: italic;
 }
