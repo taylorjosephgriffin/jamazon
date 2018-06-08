@@ -260,7 +260,8 @@ function renderAll() {
   const $appDetails = document.querySelector('[data-view="details"]')
   const $cartSum = document.querySelector('[data-view="cart"]')
   const $cartLogo = document.querySelector('#cart')
-  if (app.view === 'catalog' && $appCatalog.innerHTML === '') {
+  if (app.view === 'catalog') {
+    $appCatalog.innerHTML = ''
     $appCatalog.appendChild(catalog(app.catalog))
   }
   else if (app.view === 'details') {
