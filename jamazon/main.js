@@ -274,6 +274,9 @@ $cart.addEventListener('click', function (event) {
   if (event.target.getAttribute('id') === 'returncart') {
     app.view = 'catalog'
   }
+  else if (event.target.getAttribute('id') === 'checkout') {
+    app.view = 'checkout'
+  }
   renderAll()
 })
 
