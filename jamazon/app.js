@@ -83,46 +83,6 @@ var app = {
         details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
         origin: 'Japan',
         imageUrl: 'https://goo.gl/gJYUxz'
-      },
-      {
-        itemId: 9,
-        name: 'Hi-Hats',
-        brand: 'Paiste',
-        price: 400,
-        description: 'A set of hats for people who spare no expense.',
-        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        origin: 'Switzerland',
-        imageUrl: 'https://goo.gl/LV9l8O'
-      },
-      {
-        itemId: 10,
-        name: 'Giant Step',
-        brand: 'Sonor',
-        price: 599,
-        description: 'A pedal for metal drummers with only one foot.',
-        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        origin: 'Germany',
-        imageUrl: 'https://goo.gl/zsFo1q'
-      },
-      {
-        itemId: 11,
-        name: 'Djembe',
-        brand: 'Remo',
-        price: 49.99,
-        description: 'A hand drum for people with dreadlocks.',
-        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        origin: 'West Africa',
-        imageUrl: 'https://goo.gl/iKtU8x'
-      },
-      {
-        itemId: 12,
-        brand: 'Ludwig',
-        name: 'Black Beauty',
-        price: 749.99,
-        description: 'A snare drum for people with too many drumsticks.',
-        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-        origin: 'United States',
-        imageUrl: 'https://goo.gl/ubY0QA'
       }
     ]
   },
