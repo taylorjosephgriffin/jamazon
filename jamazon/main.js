@@ -15,7 +15,7 @@ function card(item) {
   $cardImg.classList.add('card-img-top')
   $cardImg.setAttribute('src', item.imageUrl)
   $cardImg.setAttribute('alt', 'Card image cap')
-  $cardBody.classList.add('card-body')
+  $cardBody.classList.add('card-body', 'd-flex', 'justify-content-end', 'flex-column')
   $cardText.classList.add('card-text', 'd-flex', 'justify-content-center', 'badge', 'badge-pill', 'badge-success')
   $cardText.textContent = `$${item.price}`
   $cardText.setAttribute('id', 'card-badge')
@@ -41,16 +41,9 @@ function catalog(catalog) {
   const $headRow = document.createElement('div')
   const $itemRow = document.createElement('div')
 
-  $headCont.textContent = 'jamazon'
-  $headCont.classList.add('col', 'd-flex', 'justify-content-left')
   $container.classList.add('container-fluid')
-  $headLogo.classList.add('fas', 'fa-headphones')
-  $headRow.classList.add('row', 'header')
   $itemRow.classList.add('row')
 
-  $headCont.appendChild($headLogo)
-  $headRow.appendChild($headCont)
-  $container.appendChild($headRow)
   $container.appendChild($itemRow)
 
   for (let i = 0; i < catalog.items.length; i++) {
@@ -77,7 +70,7 @@ function detailTemplate(item) {
   const $cartBtn = document.createElement('button')
   const $returnBtn = document.createElement('button')
 
-  $detailCont.classList.add('container')
+  $detailCont.classList.add('container', 'detail-cont')
   $detailInfo.classList.add('col', 'col-lg-9')
   $detailRow.classList.add('row')
   $imgCont.classList.add('col', 'col-lg-3')
@@ -102,8 +95,6 @@ function detailTemplate(item) {
 
   $contAll.appendChild($detailRow)
   $detailCont.appendChild($detailRow)
-  $detailCont.appendChild($cartBtn)
-  $detailCont.appendChild($returnBtn)
   $detailRow.appendChild($imgCont)
   $imgCont.appendChild($detailImg)
   $detailRow.appendChild($detailInfo)
@@ -111,6 +102,8 @@ function detailTemplate(item) {
   $detailInfo.appendChild($detailBrand)
   $detailInfo.appendChild($detailDesc)
   $detailInfo.appendChild($detailDet)
+  $detailCont.appendChild($cartBtn)
+  $detailCont.appendChild($returnBtn)
   $detailInfo.appendChild($detailPrice)
 
   return $detailCont
@@ -132,7 +125,12 @@ function cartCount(cart) {
 }
 
 function cartItem(cart, index) {
-  const $cartCol = document.createElement('div')
+  const $cartCol = document.createElement('li')
+  const $itemCont = document.createElement('div')
+  const $itemRow = document.createElement('div')
+  const $itemCol = document.createElement('div')
+  const $imgRow = document.createElement('div')
+  const $imgCol = document.createElement('div')
   const $cartName = document.createElement('h1')
   const $cartBrand = document.createElement('h6')
   const $cartPrice = document.createElement('span')
@@ -140,46 +138,64 @@ function cartItem(cart, index) {
 
   $img.setAttribute('src', app.cart.items[index].imageUrl)
 
-  $cartCol.classList.add('col', 'col-lg-4')
-  $img.classList.add('cart-img')
+  $cartCol.classList.add('list-group-item')
+  $itemCont.classList.add('container-fluid')
+  $itemCol.classList.add('col', 'col-6', 'col-xl-6')
+  $cartPrice.classList.add('badge', 'badge-success')
+  $cartPrice.setAttribute('style', 'font-size: 20px')
+  $itemRow.classList.add('row')
+  $imgCol.classList.add('col', 'col-6', 'col-xl-6')
+  $img.classList.add('cart-image', 'img-responsive')
 
   $cartName.textContent = app.cart.items[index].name
   $cartBrand.textContent = app.cart.items[index].brand
   $cartPrice.textContent = '$' + app.cart.items[index].price
 
-  $cartCol.appendChild($img)
-  $cartCol.appendChild($cartName)
-  $cartCol.appendChild($cartBrand)
-  $cartCol.appendChild($cartPrice)
+  $imgCol.appendChild($img)
+  $cartCol.appendChild($imgCol)
+  $cartCol.appendChild($itemCol)
+  $cartCol.appendChild($itemCont)
+  $itemCol.appendChild($cartName)
+  $itemCol.appendChild($cartBrand)
+  $itemCol.appendChild($cartPrice)
 
   return $cartCol
 }
 
 function cartSummary(cart) {
   const $cartCont = document.createElement('div')
-  const $cartRow = document.createElement('div')
-  const $cartHead = document.createElement('div')
+  const $cartRow = document.createElement('ul')
+  const $cartCol = document.createElement('div')
+  const $newRow = document.createElement('div')
+  const $cartHead = document.createElement('h3')
   const $totalCont = document.createElement('div')
-  const $total = document.createElement('h1')
+  const $total = document.createElement('h3')
   const $returnBtn = document.createElement('button')
 
   let cartTotal = 0
 
   $cartCont.classList.add('container-fluid')
-  $cartRow.classList.add('row', 'cart-row')
-  $cartHead.classList.add('cart-head')
+
+  $cartRow.classList.add('list-group')
+  $cartCol.classList.add('col', 'col-6', 'offset-3')
+  $newRow.classList.add('row')
+  $cartHead.classList.add('cart-head', 'd-flex', 'justify-content-center')
   $returnBtn.classList.add('btn', 'btn-secondary')
 
   $cartHead.textContent = 'cart'
   $returnBtn.textContent = 'continue shopping'
 
   $cartCont.setAttribute('id', 'cart-item')
+  $cartHead.setAttribute('style', 'text-transform: uppercase')
   $totalCont.setAttribute('id', 'total')
+  $returnBtn.setAttribute('style', 'float: right')
   $returnBtn.setAttribute('id', 'returncart')
 
   $cartCont.appendChild($cartHead)
-  $cartCont.appendChild($cartRow)
-  $cartCont.appendChild($totalCont)
+  $newRow.appendChild($cartCol)
+  $cartCol.appendChild($cartRow)
+  $cartCont.appendChild($newRow)
+  $cartCol.appendChild($totalCont)
   $totalCont.appendChild($total)
   $totalCont.appendChild($returnBtn)
 
@@ -221,8 +237,7 @@ $appCatalog.addEventListener('click', function (event) {
   if (item) {
     let itemId = item.getAttribute('data-item-id')
     app.view = 'details'
-    app.details.item = eachDetail(itemId - 0, app.catalog)
-    console.log(item)
+    app.details.item = eachDetail(Number(itemId), app.catalog)
     catalog(app.catalog)
     renderAll()
   }
