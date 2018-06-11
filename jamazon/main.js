@@ -171,6 +171,7 @@ function cartSummary(cart) {
   const $totalCont = document.createElement('div')
   const $total = document.createElement('h3')
   const $returnBtn = document.createElement('button')
+  const $checkoutBtn = document.createElement('button')
 
   let cartTotal = 0
 
@@ -181,15 +182,19 @@ function cartSummary(cart) {
   $newRow.classList.add('row')
   $cartHead.classList.add('cart-head', 'd-flex', 'justify-content-center')
   $returnBtn.classList.add('btn', 'btn-secondary')
+  $checkoutBtn.classList.add('btn', 'btn-warning')
 
   $cartHead.textContent = 'cart'
   $returnBtn.textContent = 'continue shopping'
+  $checkoutBtn.textContent = 'checkout'
 
   $cartCont.setAttribute('id', 'cart-item')
   $cartHead.setAttribute('style', 'text-transform: uppercase')
   $totalCont.setAttribute('id', 'total')
   $returnBtn.setAttribute('style', 'float: right')
   $returnBtn.setAttribute('id', 'returncart')
+  $checkoutBtn.setAttribute('style', 'float: right')
+  $checkoutBtn.setAttribute('id', 'checkout')
 
   $cartCont.appendChild($cartHead)
   $newRow.appendChild($cartCol)
@@ -197,6 +202,7 @@ function cartSummary(cart) {
   $cartCont.appendChild($newRow)
   $cartCol.appendChild($totalCont)
   $totalCont.appendChild($total)
+  $totalCont.appendChild($checkoutBtn)
   $totalCont.appendChild($returnBtn)
 
   for (let i = 0; i < cart.items.length; i++) {
