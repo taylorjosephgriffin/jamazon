@@ -400,6 +400,12 @@ $siteHead.addEventListener('click', function (event) {
   renderAll()
 })
 
+$checkout.addEventListener('click', function (event) {
+  if (event.target.getAttribute('id') === 'complete-button') {
+    alert('Success! Your order has been placed and will be shipped shortly. You will be redirected back to the homepage.')
+  }
+})
+
 function renderAll() {
   const $appCatalog = document.querySelector('[data-view="catalog"]')
   const $appDetails = document.querySelector('[data-view="details"]')
