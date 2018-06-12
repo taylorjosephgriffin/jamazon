@@ -26,19 +26,16 @@ function card(item) {
 
   $card.appendChild($cardImg)
   $card.appendChild($cardBody)
-  $cardBody.appendChild($cardText)
   $cardBody.appendChild($cardTitle)
   $cardBody.appendChild($cardBrand)
   $cardBody.appendChild($cardBtn)
+  $cardBody.appendChild($cardText)
 
   return $card
 }
 
 function catalog(catalog) {
   const $container = document.createElement('div')
-  const $headCont = document.createElement('h2')
-  const $headLogo = document.createElement('i')
-  const $headRow = document.createElement('div')
   const $itemRow = document.createElement('div')
 
   $container.classList.add('container-fluid')
@@ -107,6 +104,14 @@ function detailTemplate(item) {
   $detailInfo.appendChild($detailPrice)
 
   return $detailCont
+}
+
+function eachDetail(itemId, catalog) {
+  for (let i = 0; i < catalog.items.length; i++) {
+    if (catalog.items[i].itemId === itemId) {
+      return catalog.items[i]
+    }
+  }
 }
 
 function cartCount(cart) {
@@ -184,7 +189,13 @@ function cartSummary(cart) {
   $returnBtn.classList.add('btn', 'btn-secondary')
   $checkoutBtn.classList.add('btn', 'btn-warning')
 
-  $cartHead.textContent = 'cart'
+  if (app.cart.items.length === 0) {
+    $cartHead.textContent = 'Your cart is empty...'
+    $checkoutBtn.classList.add('hidden')
+  }
+  else {
+    $cartHead.textContent = 'cart'
+  }
   $returnBtn.textContent = 'continue shopping'
   $checkoutBtn.textContent = 'checkout'
 
@@ -213,6 +224,113 @@ function cartSummary(cart) {
   return $cartCont
 }
 
+function checkout(cart) {
+  const $formCont = document.createElement('div')
+  const $checkoutHead = document.createElement('h3')
+  const $form = document.createElement('form')
+  const $emailGroup = document.createElement('div')
+  const $emailLabel = document.createElement('label')
+  const $emailInput = document.createElement('input')
+  const $emailByLine = document.createElement('small')
+  const $nameGroup = document.createElement('div')
+  const $nameLabel = document.createElement('label')
+  const $nameInput = document.createElement('input')
+  const $addressGroup = document.createElement('div')
+  const $addressLabel = document.createElement('label')
+  const $addressInput = document.createElement('input')
+  const $addressByLine = document.createElement('small')
+  const $creditGroup = document.createElement('div')
+  const $creditLabel = document.createElement('label')
+  const $creditInput = document.createElement('input')
+  const $creditByLine = document.createElement('small')
+  const $completeButton = document.createElement('button')
+  const $summaryCont = document.createElement('div')
+  const $summaryRow = document.createElement('div')
+  const $summaryCol = document.createElement('div')
+  const $summary = document.createElement('div')
+  const $summaryItems = document.createElement('div')
+
+  $formCont.classList.add('container')
+  $checkoutHead.classList.add('d-flex', 'justify-content-center')
+  $form.classList.add('col', 'col-8', 'offset-2')
+  $emailGroup.classList.add('form-group')
+  $emailInput.classList.add('form-control')
+  $emailByLine.classList.add('form-text', 'text-muted')
+  $nameGroup.classList.add('form-group')
+  $nameInput.classList.add('form-control')
+  $addressGroup.classList.add('form-group')
+  $addressInput.classList.add('form-control')
+  $addressByLine.classList.add('form-text', 'text-muted')
+  $creditGroup.classList.add('form-group')
+  $creditInput.classList.add('form-control')
+  $creditByLine.classList.add('form-text', 'text-muted')
+  $completeButton.classList.add('btn', 'btn-success', 'offset-5')
+  $summaryCont.classList.add('container')
+  $summaryRow.classList.add('row')
+  $summaryCol.classList.add('col', 'col-12')
+  $summary.classList.add('summary')
+  $summaryItems.classList.add('summary-items')
+
+  $emailLabel.setAttribute('for', 'emailInput1')
+  $emailInput.setAttribute('type', 'email')
+  $emailInput.setAttribute('id', 'emailInput1')
+  $emailInput.setAttribute('aria-describedby', 'emailHelp')
+  $emailInput.setAttribute('placeholder', 'Enter email')
+  $nameLabel.setAttribute('for', 'nameInput1')
+  $nameInput.setAttribute('id', 'nameInput1')
+  $nameInput.setAttribute('placeholder', 'Enter full name')
+  $addressLabel.setAttribute('for', 'addressInput1')
+  $addressInput.setAttribute('id', 'addressInput1')
+  $addressInput.setAttribute('placeholder', 'Enter address')
+  $creditLabel.setAttribute('for', 'creditInput1')
+  $creditInput.setAttribute('id', 'creditInput1')
+  $creditInput.setAttribute('placeholder', 'Enter credit card number')
+  $completeButton.setAttribute('id', 'complete-button')
+
+  $checkoutHead.textContent = 'CHECKOUT'
+  $emailLabel.textContent = 'Email Address'
+  $emailByLine.textContent = 'Don\'t worry, your email address is safe with us.'
+  $nameLabel.textContent = 'Name'
+  $addressLabel.textContent = 'Address'
+  $addressByLine.textContent = 'street name and number, city, state, zipcode'
+  $creditLabel.textContent = 'Credit Card'
+  $creditByLine.textContent = 'We accept Visa, MasterCard and Discover.'
+  $completeButton.textContent = 'Complete'
+  $summaryItems.textContent = 'Items: x' + app.cart.items.length
+
+  $formCont.appendChild($checkoutHead)
+  $formCont.appendChild($form)
+  $form.appendChild($emailGroup)
+  $emailGroup.appendChild($emailLabel)
+  $emailGroup.appendChild($emailInput)
+  $emailGroup.appendChild($emailByLine)
+  $form.appendChild($nameGroup)
+  $nameGroup.appendChild($nameLabel)
+  $nameGroup.appendChild($nameInput)
+  $form.appendChild($addressGroup)
+  $addressGroup.appendChild($addressLabel)
+  $addressGroup.appendChild($addressInput)
+  $addressGroup.appendChild($addressByLine)
+  $form.appendChild($creditGroup)
+  $creditGroup.appendChild($creditLabel)
+  $creditGroup.appendChild($creditInput)
+  $creditGroup.appendChild($creditByLine)
+  $form.appendChild($summaryCont)
+  $summaryCont.appendChild($summaryRow)
+  $summaryRow.appendChild($summaryCol)
+  $summaryCol.appendChild($summaryItems)
+  $summaryCol.appendChild($summary)
+  $form.appendChild($completeButton)
+
+  document.querySelector('[data-view="checkout"]').appendChild($formCont)
+
+  let total = 0
+  for (let i = 0; i < app.cart.items.length; i++) {
+    total += app.cart.items[i].price
+  }
+  $summary.textContent = 'Total: $' + total.toFixed(2)
+}
+
 function showHidden(view) {
   const $eachView = document.querySelectorAll('[data-view]')
   $eachView.forEach(function (element) {
@@ -225,18 +343,12 @@ function showHidden(view) {
   })
 }
 
-function eachDetail(itemId, catalog) {
-  for (let i = 0; i < catalog.items.length; i++) {
-    if (catalog.items[i].itemId === itemId) {
-      return catalog.items[i]
-    }
-  }
-}
-
 const $appCatalog = document.querySelector('[data-view="catalog"]')
 const $appDetails = document.querySelector('[data-view="details"]')
 const $cart = document.querySelector('[data-view="cart"]')
 const $appCart = document.querySelector('#cart')
+const $siteHead = document.querySelector('.header')
+const $checkout = document.querySelector('[data-view="checkout"]')
 
 $appCatalog.addEventListener('click', function (event) {
   const item = event.target.parentNode.closest('.card')
@@ -276,6 +388,14 @@ $cart.addEventListener('click', function (event) {
   }
   else if (event.target.getAttribute('id') === 'checkout') {
     app.view = 'checkout'
+    checkout(app.cart)
+  }
+  renderAll()
+})
+
+$siteHead.addEventListener('click', function (event) {
+  if (event.target.getAttribute('id') === 'header') {
+    app.view = 'catalog'
   }
   renderAll()
 })
