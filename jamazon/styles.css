@@ -92,3 +92,7 @@ img {
 #checkout {
   margin-left: 10px;
 }
+
+.form-container {
+  border: 2px solid black;
+}

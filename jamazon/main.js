@@ -145,11 +145,11 @@ function cartItem(cart, index) {
 
   $cartCol.classList.add('list-group-item')
   $itemCont.classList.add('container-fluid')
-  $itemCol.classList.add('col', 'col-6', 'col-xl-6')
+  $itemCol.classList.add('col', 'col-6', 'col-xl-9', 'offset-xl-5')
   $cartPrice.classList.add('badge', 'badge-success')
   $cartPrice.setAttribute('style', 'font-size: 20px')
   $itemRow.classList.add('row')
-  $imgCol.classList.add('col', 'col-6', 'col-xl-6')
+  $imgCol.classList.add('col', 'col-6', 'col-xl-3', 'offset-xl-1')
   $img.classList.add('cart-image', 'img-responsive')
 
   $cartName.textContent = app.cart.items[index].name
@@ -271,6 +271,7 @@ function checkout(cart) {
   $summary.classList.add('summary')
   $summaryItems.classList.add('summary-items')
 
+  $form.setAttribute('id', 'form')
   $emailLabel.setAttribute('for', 'emailInput1')
   $emailInput.setAttribute('type', 'email')
   $emailInput.setAttribute('id', 'emailInput1')
@@ -285,6 +286,7 @@ function checkout(cart) {
   $creditLabel.setAttribute('for', 'creditInput1')
   $creditInput.setAttribute('id', 'creditInput1')
   $creditInput.setAttribute('placeholder', 'Enter credit card number')
+  $completeButton.setAttribute('type', 'submit')
   $completeButton.setAttribute('id', 'complete-button')
 
   $checkoutHead.textContent = 'CHECKOUT'
@@ -322,13 +324,12 @@ function checkout(cart) {
   $summaryCol.appendChild($summary)
   $form.appendChild($completeButton)
 
-  document.querySelector('[data-view="checkout"]').appendChild($formCont)
-
   let total = 0
   for (let i = 0; i < app.cart.items.length; i++) {
     total += app.cart.items[i].price
   }
   $summary.textContent = 'Total: $' + total.toFixed(2)
+  return $formCont
 }
 
 function showHidden(view) {
@@ -348,6 +349,8 @@ const $appDetails = document.querySelector('[data-view="details"]')
 const $cart = document.querySelector('[data-view="cart"]')
 const $appCart = document.querySelector('#cart')
 const $siteHead = document.querySelector('.header')
+const $form = document.querySelector('form')
+const $formCont = document.querySelector('.form-group')
 const $checkout = document.querySelector('[data-view="checkout"]')
 
 $appCatalog.addEventListener('click', function (event) {
@@ -388,7 +391,6 @@ $cart.addEventListener('click', function (event) {
   }
   else if (event.target.getAttribute('id') === 'checkout') {
     app.view = 'checkout'
-    checkout(app.cart)
   }
   renderAll()
 })
@@ -400,10 +402,9 @@ $siteHead.addEventListener('click', function (event) {
   renderAll()
 })
 
-$checkout.addEventListener('click', function (event) {
-  if (event.target.getAttribute('id') === 'complete-button') {
-    alert('Success! Your order has been placed and will be shipped shortly. You will be redirected back to the homepage.')
-  }
+$checkout.addEventListener('submit', function (event) {
+  event.preventDefault()
+  alert('Success! Your order is being processed and will be sent out shortly.')
 })
 
 function renderAll() {
@@ -421,6 +422,10 @@ function renderAll() {
   else if (app.view === 'cart') {
     $cart.innerHTML = ''
     $cart.appendChild(cartSummary(app.cart))
+  }
+  else if (app.view === 'checkout') {
+    $checkout.innerHTML = ''
+    $checkout.appendChild(checkout(app.cart))
   }
   $cartLogo.innerHTML = ''
   $cartLogo.appendChild(cartCount(app.cart))
