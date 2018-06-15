@@ -45,7 +45,7 @@ function catalog(catalog) {
 
   for (let i = 0; i < catalog.items.length; i++) {
     const $cardCol = document.createElement('div')
-    $cardCol.classList.add('card-col', 'col-xl-3', 'col-lg-4', 'col-sm-12', 'col-12')
+    $cardCol.classList.add('card-col', 'col-xl-2', 'col-lg-4', 'col-sm-12', 'col-12')
     $cardCol.appendChild(card(catalog.items[i]))
     $itemRow.appendChild($cardCol)
   }
@@ -145,11 +145,11 @@ function cartItem(cart, index) {
 
   $cartCol.classList.add('list-group-item')
   $itemCont.classList.add('container-fluid')
-  $itemCol.classList.add('col', 'col-6', 'col-xl-9', 'offset-xl-5')
+  $itemCol.classList.add('col', 'col-xl-9', 'col-lg-4', 'offset-xl-4')
   $cartPrice.classList.add('badge', 'badge-success')
   $cartPrice.setAttribute('style', 'font-size: 20px')
   $itemRow.classList.add('row')
-  $imgCol.classList.add('col', 'col-6', 'col-xl-3', 'offset-xl-1')
+  $imgCol.classList.add('col', 'col-xl-4')
   $img.classList.add('cart-image', 'img-responsive')
 
   $cartName.textContent = app.cart.items[index].name
@@ -183,7 +183,7 @@ function cartSummary(cart) {
   $cartCont.classList.add('container-fluid')
 
   $cartRow.classList.add('list-group')
-  $cartCol.classList.add('col', 'col-6', 'offset-3')
+  $cartCol.classList.add('col', 'col-4', 'offset-4')
   $newRow.classList.add('row')
   $cartHead.classList.add('cart-head', 'd-flex', 'justify-content-center')
   $returnBtn.classList.add('btn', 'btn-secondary')
