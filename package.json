@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "E-Commerce 'Amazon' Clone",
+  "homepage": "https://github.com/taylorjosephgriffin/jamazon",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

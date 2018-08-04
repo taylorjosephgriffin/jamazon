@@ -1,0 +1,99 @@
+h2 {
+  font-size: 60px;
+  letter-spacing: 2px;
+  color: white;
+  background-color: rgb(55, 74, 114);
+  padding-bottom: 10px;
+}
+
+i {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.header {
+  margin: auto;
+  width: 100%;
+}
+
+.card {
+  font-style: italic;
+  height: 100%;
+  border: 2px solid grey;
+}
+
+img {
+  margin-top: 15px;
+}
+
+.card-text {
+  width: 100px;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(238, 238, 238);
+}
+
+.detail-img {
+  width: 100%;
+}
+
+.cart-image {
+  width: 100%;
+  float: left;
+}
+
+.detail-cont {
+  border: 2px solid grey;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+
+.hidden {
+  display: none;
+}
+
+#addcart {
+  float: left;
+  margin-top: 10px;
+}
+
+#detail-price {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-style: italic;
+}
+
+#total {
+  margin-top: 40px;
+  color: forestgreen;
+}
+
+#cart {
+  width: auto;
+  margin-right: 0;
+  margin-top: 0;
+  justify-content: end;
+}
+
+.col-xl-6 {
+  float: left;
+}
+
+.list-group-item {
+  margin-top: 20px;
+  border: 2px solid grey;
+}
+
+#return {
+  float: left;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#checkout {
+  margin-left: 10px;
+}
+
+.form-container {
+  border: 2px solid black;
+}
